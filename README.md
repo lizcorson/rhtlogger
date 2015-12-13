@@ -15,4 +15,4 @@ Just a simple little temperature/relative humidity Arduino data logger.
 
 ## Photo
 
-![alt tag](https://raw.github.com/lizcorson/rhtlogger/photos/dec12.jpg)
+![alt tag](https://github.com/lizcorson/rhtlogger/blob/master/photos/dec12.jpg)
