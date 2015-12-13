@@ -16,6 +16,10 @@ volatile int sensorValue;//this is the variable used in the Interrupt Service Ro
 volatile unsigned long sensorTime;//this is the variable use in the ISR to record the time when the sensor was readout.
 volatile byte sensorFlag;//this flag is used to communicate to the main loop that a new value was read.
 
+// set the LCD address to 0x27 for a 16 chars 2 line display
+// Set the pins on the I2C chip used for LCD connections:
+//                    addr, en,rw,rs,d4,d5,d6,d7,bl,blpol
+LiquidCrystal_I2C lcd(0x27, 2, 1, 0, 4, 5, 6, 7, 3, POSITIVE);  // Set the LCD I2C address
 
 void setup() {
   // put your setup code here, to run once:
@@ -35,7 +39,9 @@ void setup() {
   //every 500000 us to read out the potentiometer that simulates a sensor in this tutorial.
   Timer1.attachInterrupt(readoutRHT);  // attaches the readoutPotentiometer() function as 'Interrupt Service Routine' (ISR) to the timer1 interrupt
   //this means that every time 500000 us have passed, the readoutPotentiometer() routine will be called.
-
+  
+  lcd.begin(16,2);   // initialize the lcd for 16 chars 2 lines, turn on backlight
+  lcd.backlight();
 }
 
 void loop() {
@@ -44,7 +50,12 @@ void loop() {
 
   if (sensorFlag ==1)    //if there is a sensor reading...
   {
-    
+    lcd.setCursor(0,0);
+    String printString = String("Val: ") + String(sensorValue) + String("         ");
+    lcd.print(printString);
+    Serial.println(printString);
+    //lcd.setCursor(0,1);
+    //lcd.print(getDigitalTime(now));
     dataString = getDigitalTime(now) + String(",") + String(sensorValue); //concatenate (add together) a string consisting of the time and the sensor reading at that time
                          //the time and the reading are separated by a 'comma', which acts as the delimiter enabling to read the datalog.txt file as two columns into
                          //a spread sheet program like excel.            
