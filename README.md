@@ -13,9 +13,10 @@ Just a simple little temperature/relative humidity Arduino data logger.
 
 - New LiquidCrystal library https://bitbucket.org/fmalpartida/new-liquidcrystal/downloads
 - RTClib https://github.com/adafruit/RTClib
+- DHT https://github.com/adafruit/DHT-sensor-library
 
 ## Photo
 
-This is what the project currently looks like. I'm still waiting on my temperature sensor to arrive so right now the LCD just shows a randomly generated value updating every 5 seconds. (I've ordered two sensors - a knockoff of a more accurate Sparkfun board for cheap on ebay as well as a DHT22 from Sparkfun.)
+This is what the project currently looks like using the DHT22 sensor. I've also received the HTU21D sensor, but I need to solder on the header pins.
 
-![alt tag](https://github.com/lizcorson/rhtlogger/blob/master/photos/dec12.jpg)
+![alt tag](https://github.com/lizcorson/rhtlogger/blob/master/photos/dec15.jpg)

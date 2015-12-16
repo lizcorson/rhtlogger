@@ -1,8 +1,11 @@
 #include <RTClib.h>
 #include <Wire.h>
 #include "RTClib.h"
+#include "DHT.h"
+
+
  
-RTC_DS1307 RTC;
+
 #include <SPI.h>
 #include <SD.h>      //this includes the SD card libary that comes with the Arduino
 #include <TimerOne.h>//this is a library that uses the (16 bit) timer 1 of the arduino to trigger interrupts in certain time intervals.
@@ -10,22 +13,33 @@ RTC_DS1307 RTC;
 
 #include <LiquidCrystal_I2C.h>//this is the special I2C LCD display library that came with the display
 
+#define DHTPIN 2     // what digital pin we're connected to
+#define DHTTYPE DHT22   // DHT 22  (AM2302), AM2321
 #define chipSelect 10//we are using pin#10 as chip select pin for the SD card
-#define potentiometerSwiperPin 0//use A0 as sensor input
-volatile int sensorValue;//this is the variable used in the Interrupt Service Routine (ISR) for 'reporting' the potentiometer value to the main loop.
+
+volatile float temperature;//this is the variable used in the Interrupt Service Routine (ISR) for 'reporting' the potentiometer value to the main loop.
+volatile float rh;
 volatile unsigned long sensorTime;//this is the variable use in the ISR to record the time when the sensor was readout.
 volatile byte sensorFlag;//this flag is used to communicate to the main loop that a new value was read.
 
+RTC_DS1307 RTC;
 // set the LCD address to 0x27 for a 16 chars 2 line display
 // Set the pins on the I2C chip used for LCD connections:
 //                    addr, en,rw,rs,d4,d5,d6,d7,bl,blpol
 LiquidCrystal_I2C lcd(0x27, 2, 1, 0, 4, 5, 6, 7, 3, POSITIVE);  // Set the LCD I2C address
+
+// Initialize DHT sensor.
+// Note that older versions of this library took an optional third parameter to
+// tweak the timings for faster processors.  This parameter is no longer needed
+// as the current DHT reading algorithm adjusts itself to work on faster procs.
+DHT dht(DHTPIN, DHTTYPE);
 
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(38400);
   Wire.begin();
   RTC.begin();  
+  dht.begin();
 
   //set up SD card
   Serial.print("Initializing SD card..."); 
@@ -50,13 +64,16 @@ void loop() {
 
   if (sensorFlag ==1)    //if there is a sensor reading...
   {
+    //temperature = round(temperature*10)/10;
+    //rh = round(rh*10)/10;
+    char deg = (char)223;
     lcd.setCursor(0,0);
-    String printString = String("Val: ") + String(sensorValue) + String("         ");
+    String printString = String(temperature) + String(deg) + String("F ") + String(rh)  + String("%");
     lcd.print(printString);
     Serial.println(printString);
-    //lcd.setCursor(0,1);
-    //lcd.print(getDigitalTime(now));
-    dataString = getDigitalTime(now) + String(",") + String(sensorValue); //concatenate (add together) a string consisting of the time and the sensor reading at that time
+    lcd.setCursor(0,1);
+    lcd.print(getDigitalTime(now));
+    dataString = getDigitalTime(now) + String(",") + String(temperature) + String(",") + String(rh); //concatenate (add together) a string consisting of the time and the sensor reading at that time
                          //the time and the reading are separated by a 'comma', which acts as the delimiter enabling to read the datalog.txt file as two columns into
                          //a spread sheet program like excel.            
     
@@ -84,7 +101,10 @@ void loop() {
 void readoutRHT()//this is the ISR routine that is executed everytime the timer1 interrupt is called.
 {
   //sensorValue = analogRead(potentiometerSwiperPin);//read out the potentiometer swiper
-  sensorValue = random(100); // for now this is just a placeholder until I get the actual sensor
+  //sensorValue = random(100); // for now this is just a placeholder until I get the actual sensor
+  temperature = dht.readTemperature(true);
+  rh = dht.readHumidity();
+  
   sensorTime = millis();  //note the time
   sensorFlag = 1;         //set the flag that tells the loop() that there is a new sensor value to be printed.
 }
