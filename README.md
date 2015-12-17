@@ -19,4 +19,5 @@ Just a simple little temperature/relative humidity Arduino data logger.
 
 This is what the project currently looks like using the DHT22 sensor. I've also received the HTU21D sensor, but I need to solder on the header pins.
 
-![alt tag](https://github.com/lizcorson/rhtlogger/blob/master/photos/dec15.jpg)
+![alt tag](https://github.com/lizcorson/rhtlogger/blob/master/photos/dec16_front.jpg)
+![alt tag](https://github.com/lizcorson/rhtlogger/blob/master/photos/dec16_top.jpg)
