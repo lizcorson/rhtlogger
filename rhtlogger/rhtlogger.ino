@@ -7,6 +7,7 @@
 #include <TimerOne.h>//this is a library that uses the (16 bit) timer 1 of the arduino to trigger interrupts in certain time intervals.
                      //here we use it to read sensor values precisely every 500ms. 
 #include <LiquidCrystal_I2C.h>//this is the special I2C LCD display library that came with the display
+#include "SparkFunHTU21D.h"
 
 #define DHTPIN 2     // what digital pin we're connected to
 #define buttonPin 8 
@@ -15,6 +16,8 @@
 
 volatile float temperature;//this is the variable used in the Interrupt Service Routine (ISR) for 'reporting' the potentiometer value to the main loop.
 volatile float rh;
+volatile float temperature2;//this is the variable used in the Interrupt Service Routine (ISR) for 'reporting' the potentiometer value to the main loop.
+volatile float rh2;
 volatile unsigned long sensorTime;//this is the variable use in the ISR to record the time when the sensor was readout.
 volatile byte sensorFlag;//this flag is used to communicate to the main loop that a new value was read.
 int powerStatus = 1;
@@ -35,12 +38,15 @@ LiquidCrystal_I2C lcd(0x27, 2, 1, 0, 4, 5, 6, 7, 3, POSITIVE);  // Set the LCD I
 // as the current DHT reading algorithm adjusts itself to work on faster procs.
 DHT dht(DHTPIN, DHTTYPE);
 
+HTU21D myHumidity;
+
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(38400);
   Wire.begin();
   RTC.begin();  
   dht.begin();
+  myHumidity.begin();
 
   pinMode(buttonPin, INPUT);
 
@@ -70,6 +76,7 @@ void loop() {
   DateTime now = RTC.now();
   String dataString = "";//instantiate (make) an object of the string class for assembling a text line of the datalog
   String printString = "";
+  String printString2 = "";
   //check for button press
   int buttonRead = digitalRead(buttonPin);
   
@@ -107,9 +114,12 @@ void loop() {
       lcd.print(printString);
       Serial.println(printString);
       lcd.setCursor(0,1);
-      lcd.print(getDigitalTime(now));
+      //lcd.print(getDigitalTime(now));
+      printString2 = String(temperature2) + String(deg) + String("F ") + String(rh2)  + String("%");
+      lcd.print(printString2);
+      Serial.println(printString2);
     }
-    dataString = getDigitalTime(now) + String(",") + String(temperature) + String(",") + String(rh); //concatenate (add together) a string consisting of the time and the sensor reading at that time
+    dataString = getDigitalTime(now) + String(",") + String(temperature) + String(",") + String(rh) + String(",") + String(temperature2) + String(",") + String(rh2); //concatenate (add together) a string consisting of the time and the sensor reading at that time
                          //the time and the reading are separated by a 'comma', which acts as the delimiter enabling to read the datalog.txt file as two columns into
                          //a spread sheet program like excel.            
     if ((unsigned long)(millis() - lastFileWrite) >= 60000) { // only write to file once a minute, should handle millis rollover
@@ -141,6 +151,8 @@ void readoutRHT()//this is the ISR routine that is executed everytime the timer1
   //sensorValue = random(100); // for now this is just a placeholder until I get the actual sensor
   temperature = dht.readTemperature(true);
   rh = dht.readHumidity();
+  temperature2 = myHumidity.readTemperature()*1.8+32; //convert to F
+  rh2 = myHumidity.readHumidity();
   
   sensorTime = millis();  //note the time
   sensorFlag = 1;         //set the flag that tells the loop() that there is a new sensor value to be printed.
