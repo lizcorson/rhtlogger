@@ -3,7 +3,7 @@ Just a simple little temperature/relative humidity Arduino data logger. A sensor
 
 ## Status
 
-As of Dec 17, I think I'm pretty pleased with the code and all the parts. I'll be comparing the DHT22 and the HTU21D and selecting one. Once I select the better sensor, I plan to build a housing for the project. I am planning to learn how to use a laser cutter.
+I've decided to go with the HTU21D sensor as it has a MUCH faster response time. The DHT22 is annoyingly slow and can take half an hour to equilibrate to a new room. However, my code has started to act strangely and stopped working altogether when I tried to delete the DHT22 parts from it so I am rebuilding it. I am fairly sure it's not a hardware problem. Initially I thought the RTC was acting up since I would occasionally get date readings with the year 2165 but logging with the RTC alone works fine.
 
 ## Parts Used
 
