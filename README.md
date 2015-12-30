@@ -1,5 +1,5 @@
 # rhtlogger
-Just a simple little temperature/relative humidity Arduino data logger. A sensor detects the current temperature and relative humidity. An LCD display updates every 5 seconds, and the values are logged to file once per minute.
+Just a simple little temperature/relative humidity Arduino data logger. A sensor detects the current temperature and relative humidity. An LCD display updates every 3 seconds, and the values are logged to file every 30 seconds.
 
 ## Status
 
@@ -24,7 +24,7 @@ I've decided to go with the HTU21D sensor as it has a MUCH faster response time.
 
 ## Photo
 
-Currently I am using both a DHT22 and an HTU21D.
+These photos show both a DHT22 and an HTU21D, but I am only using the HTU21D now.
 
 ![alt tag](https://github.com/lizcorson/rhtlogger/blob/master/photos/dec17.jpg)
 ![alt tag](https://github.com/lizcorson/rhtlogger/blob/master/photos/dec16_front.jpg)
