@@ -4,15 +4,12 @@
 #include <SPI.h>
 #include <SD.h>      //this includes the SD card libary that comes with the Arduino
 #include "SparkFunHTU21D.h"
-//#include <TimerOne.h>//this is a library that uses the (16 bit) timer 1 of the arduino to trigger interrupts in certain time intervals.
-                     //here we use it to read sensor values precisely every 500ms. 
 
 #define chipSelect 10//we are using pin#10 as chip select pin for the SD card
 #define buttonPin 8 
 long lastFileWrite = 0;
 long lastDisplayWrite = 0;
 int powerStatus = 1;
-int lastButtonState = LOW;
 long lastDebounceTime = 0;
 long debounceDelay = 200;
 
@@ -30,13 +27,14 @@ void setup () {
   myHumidity.begin();
 
   pinMode(buttonPin, INPUT);
- 
+
+ // RTC Adjustment. Only needed when setting time after battery is removed.
   /*if (! RTC.isrunning()) {
     Serial.println("RTC is NOT running!");
     // following line sets the RTC to the date & time this sketch was compiled
     RTC.adjust(DateTime(__DATE__, __TIME__));
   }*/
-  //uncomment to adjust time regardless of whether it's set
+  //uncomment to adjust time regardless of whether it's already set
   //RTC.adjust(DateTime(__DATE__, __TIME__));
   lcd.begin(16,2);   // initialize the lcd for 16 chars 2 lines, turn on backlight
   lcd.backlight();
@@ -50,16 +48,7 @@ void setup () {
     delay(3000); // wait 3 sec so user sees message
     return;//exit the setup function. This quits the setup() and the program counter jumps to the loop().
   }
-  Serial.println("card initialized.");//otherwise, tell us that the card was successfully initialized.
-  //TimerOne is breaking my code and I don't know why so I'm rewriting it to not use it
-  //int intervalSeconds = 1;
-  //int intervalus = intervalSeconds*1000000;
-  /*Timer1.initialize(intervalus); // initialize timer1, and set a 5000 ms second period for the interrupt interval (i.e. the ISR will be called
-  //every 500000 us to read out the potentiometer that simulates a sensor in this tutorial.
-  Timer1.attachInterrupt(readoutRHT);  // attaches the readoutPotentiometer() function as 'Interrupt Service Routine' (ISR) to the timer1 interrupt
-  //this means that every time 500000 us have passed, the readoutPotentiometer() routine will be called.
-  */
- 
+  Serial.println("card initialized.");//otherwise, tell us that the card was successfully initialized. 
 }
  
 void loop () {
@@ -111,40 +100,24 @@ void loop () {
       lcd.print("File Error"); 
       lastFileWrite = millis(); // still set this marker bc I don't want it to constantly try to write to file if there's an error
     }
-    
-    //sensorFlag = 0;      //reset the sensor reading flag. This prevents the loop from running until a new sensor reading comes from the ISR.    
   }
 
-  //update the display every 5 seconds
+  //update the display every 3 seconds if the LCD is on
   if ((unsigned long)(millis() - lastDisplayWrite) >= 3000 && powerStatus) {
     float dispT = myHumidity.readTemperature()*1.8+32; //convert to F
     float dispRH = myHumidity.readHumidity();
     char deg = (char)223;
     String printString = String(dispT) + String(deg) + String("F ") + String(dispRH)  + String("%  ");
+    String serialString = getLCDDateTime(now) + " " + printString;
     
-    //Serial.println(getDigitalTime(now));
+    Serial.println(serialString);
     lcd.setCursor(0,0);
-    String printTime = getLCDDateTime(now) + "  ";
+    String printTime = getLCDDateTime(now) + "  "; //make sure it takes up the whole line so no stray characters after date rolls over ie from 30th to 1st
     lcd.print(printTime);
     lcd.setCursor(0,1);
     lcd.print(printString); 
     lastDisplayWrite = millis();
   }
-    
-}
-
-/*void readoutRHT()//this is the ISR routine that is executed everytime the timer1 interrupt is called.
-{
-  temperature = myHumidity.readTemperature()*1.8+32; //convert to F
-  rh = myHumidity.readHumidity();
-  
-  sensorTime = millis();  //note the time
-  sensorFlag = 1;         //set the flag that tells the loop() that there is a new sensor value to be printed.
-}*/
-
-String getDigitalDate (DateTime now) {
-    String result = String(now.year()) + '/' + now.month() + '/' + now.day();    
-    return result;
 }
 
 String getLCDDateTime (DateTime now) {
@@ -177,44 +150,6 @@ String getLCDDateTime (DateTime now) {
   return result;
 }
 
-String getDigitalTimeOnly (DateTime now) {
-  String hourstring = "";
-  String minstring = "";
-  String secstring = "";
-  String ampm = "";  
-  
-  //add zeros to front of 1 character time components  
-  if (now.hour() < 10) {
-    hourstring = String(0) + String(now.hour());
-    ampm = "AM";
-  }
-  else if (now.hour() > 12) {
-    int adjHour = now.hour() - 12;
-    if (adjHour < 10) {
-      hourstring = String(0) + String(adjHour);
-    }
-    else {
-      hourstring = String(adjHour);  
-    }
-    ampm = "PM";
-  }
-  if (now.minute() < 10) {
-    minstring = String(0) + String(now.minute());
-  }
-  else {
-    minstring = String(now.minute());
-  }
-  if (now.second() < 10) {
-    secstring = String(0) + String(now.second());
-  }
-  else {
-    secstring = String(now.second());
-  }
-
-  
-  String result = hourstring + ':' + minstring + ':' + secstring + ' ' + ampm;  
-  return result;
-}
 String getDigitalTime (DateTime now) {
   String hourstring = "";
   String minstring = "";
