@@ -31,12 +31,12 @@ Button: the other end of the button is connected to a rail on the breadboard. Wi
 
 ## Code
 
-Download all the code in this repository. You'll want to use *rhtlogger2* as the main sketch. All the libraries required are in the library folder.
+Download all the code in this repository. You'll want to use **rhtlogger2** as the main sketch. All the libraries required are in the library folder.
 
-First, run the *i2cscanner* sketch to determine the address of your LCD. It will be either 0x27 or 0x3F.
+First, run the **i2cscanner** sketch to determine the address of your LCD. It will be either 0x27 or 0x3F.
 
-Next, run the *rtclcdtest* sketch. Be sure to set the right i2c address for your LCD. This will set the clock on the RTC, and the time will display on the LCD. Mine tends to gain a few minutes per week, and you can also run this sketch to re-sync the time. If you're having problems with the LCD, this site has some variations on the LCD code: http://arduino-info.wikispaces.com/LCD-Blue-I2C#v1
+Next, run the **rtclcdtest** sketch. Be sure to set the right i2c address for your LCD. This will set the clock on the RTC, and the time will display on the LCD. Mine tends to gain a few minutes per week, and you can also run this sketch to re-sync the time. If you're having problems with the LCD, this site has some variations on the LCD code: http://arduino-info.wikispaces.com/LCD-Blue-I2C#v1
 
-Now your clock is set and your LCD is working, so you can proceed to upload the main sketch, *rhtlogger2*. Again, be sure to update the i2c address for the LCD.
+Now your clock is set and your LCD is working, so you can proceed to upload the main sketch, **rhtlogger2**. Again, be sure to update the i2c address for the LCD.
 
 Let it run for a few minutes, then pull the SD card to ensure it's writing to file. If it is, you're all set! If not, maybe your board uses a different chip select pin. Try the SD card library example sketches to try to get your SD card working.

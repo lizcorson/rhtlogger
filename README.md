@@ -3,7 +3,7 @@ Just a simple little temperature/relative humidity Arduino data logger. A sensor
 
 ## Status
 
-The next step is to solder everything onto a protoboard and to make a case. I've also added a tutorial if you want to replicate my project: https://github.com/lizcorson/rhtlogger/blob/master/README.md
+The next step is to solder everything onto a protoboard and to make a case. I've also added a tutorial if you want to replicate my project: https://github.com/lizcorson/rhtlogger/blob/master/tutorial.md
 
 ## Parts Used
 
