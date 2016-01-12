@@ -13,7 +13,7 @@ int powerStatus = 1;
 long lastDebounceTime = 0;
 long debounceDelay = 200;
 
-// set the LCD address to 0x27 for a 16 chars 2 line display
+// set the LCD address to 0x27 or 0x3F for a 16 chars 2 line display
 // Set the pins on the I2C chip used for LCD connections:
 //                    addr, en,rw,rs,d4,d5,d6,d7,bl,blpol
 LiquidCrystal_I2C lcd(0x27, 2, 1, 0, 4, 5, 6, 7, 3, POSITIVE);  // Set the LCD I2C address
@@ -81,8 +81,8 @@ void loop () {
     float rh = myHumidity.readHumidity();
     //write to SD time and value
     String dataString = getDigitalTime(now) + String(",") + String(temperature) + String(",") + String(rh); //concatenate (add together) a string consisting of the time and the sensor reading at that time
-       
-    File dataFile = SD.open("rhtlog.txt", FILE_WRITE);//open a file named datalog.txt. FILE_WRITE mode specifies to append the string at the end of the file
+    String filename = getFileName(now); // "rhtlog.txt"
+    File dataFile = SD.open(filename, FILE_WRITE);//open a file named datalog.txt. FILE_WRITE mode specifies to append the string at the end of the file
                          //file names must adhere to the "8.3 format"(max 8 char in the name, and a 3 char extension)
                          //if there is no file of that name on the SD card, this .open method will create a new file.
                          //This line actually instantiates an File object named "datafile"      
@@ -177,3 +177,25 @@ String getDigitalTime (DateTime now) {
   String result = String(now.year()) + '/' + String(now.month()) + '/' + String(now.day()) + ' ' + hourstring + ':' + minstring + ':' + secstring;  
   return result;
 }
+
+String getFileName (DateTime now) {
+  String monthstring = "";
+  if (now.month() < 10) {
+    monthstring = String(0) + String(now.month());
+  }
+  else {
+    monthstring = String(now.month());
+  }
+  
+  String daystring = "";
+  if (now.day() < 10) {
+    daystring = String(0) + String(now.day());
+  }
+  else {
+    daystring = String(now.day());
+  }
+  
+  String filename = String(now.year()) + monthstring + daystring + ".txt";
+  return filename;
+}
+

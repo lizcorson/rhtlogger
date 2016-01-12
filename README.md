@@ -3,14 +3,17 @@ Just a simple little temperature/relative humidity Arduino data logger. A sensor
 
 ## Status
 
-I've decided to go with the HTU21D sensor as it has a MUCH faster response time. The DHT22 is annoyingly slow and can take half an hour to equilibrate to a new room. For some reason, using TimerOne for interrupts was causing my code to break before even getting out of the setup function. I rewrote it to update the display and the file just using millis time markers. The new code seems to work well.
+The next step is to solder everything onto a protoboard and to make a case. I've also added a tutorial if you want to replicate my project: https://github.com/lizcorson/rhtlogger/blob/master/README.md
 
 ## Parts Used
 
 - SainSmart Arduino Uno http://smile.amazon.com/dp/B00E5WJSHK
-- Arrela Data Logger Shield http://smile.amazon.com/dp/B00KHYHKT8
+- Arrela Data Logger Shield http://smile.amazon.com/dp/B00KHYHKT8 (I see this is no longer available - http://smile.amazon.com/dp/B00M1M8N90/ is probably a comparable replacement)
 - Clone of Sparkfun RHT Board HTU21D http://www.ebay.com/itm/310951642577?_trksid=p2057872.m2749.l2649&ssPageName=STRK%3AMEBIDX%3AIT (original: https://www.sparkfun.com/products/12064)
 - Frentaly i2c LCD http://www.ebay.com/itm/IIC-I2C-TWI-1602-Serial-Blue-Backlight-LCD-Display-For-Arduino-/221935534466?roken=cUgayN&soutkn=mKrU7F
+- Momentary button https://www.sparkfun.com/products/11993
+- 10k Ω resistor
+- tiny breadboard and/or protoshield with tiny breadboard http://www.ebay.com/itm/221739124245
 
 ## Libraries Used
 

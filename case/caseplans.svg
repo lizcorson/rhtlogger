@@ -22,7 +22,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
         <cc:license
            rdf:resource="http://creativecommons.org/licenses/by-nc/3.0/" />
       </cc:Work>
@@ -60,8 +60,8 @@
      showgrid="false"
      inkscape:document-units="in"
      inkscape:zoom="2.24"
-     inkscape:cx="96.794141"
-     inkscape:cy="186.00811"
+     inkscape:cx="255.50323"
+     inkscape:cy="346.7224"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
@@ -70,9 +70,10 @@
   <!-- Front-->
   <g
      transform="translate(22.5, 22.5) "
-     id="g4138">
+     id="g4138"
+     style="fill:none">
     <polygon
-       style="stroke:#000000; fill:none; stroke-width:0.9"
+       style="stroke:#000000;fill:none;stroke-width:0.9"
        points="0, 0 42.75000000000001, 0 42.75000000000001, 10.62 85.50000000000001, 10.62 85.50000000000001, 0 112.50000000000001, 0 112.50000000000001, 10.62 139.5, 10.62 139.5, 0 166.5, 0 166.5, 10.62 193.5, 10.62 193.5, 0 220.5, 0 220.5, 10.62 247.5, 10.62 247.5, 0 274.5, 0 274.5, 10.62 317.25, 10.62 317.25, 0 360, 0 360, 43.87500000000001 349.38, 43.87500000000001 349.38, 87.75000000000001 360, 87.75000000000001 360, 114.75000000000001 349.38, 114.75000000000001 349.38, 158.62500000000003 360, 158.62500000000003 360, 202.5 317.25, 202.5 317.25, 191.88 274.5, 191.88 274.5, 202.5 247.5, 202.5 247.5, 191.88 220.5, 191.88 220.5, 202.5 193.5, 202.5 193.5, 191.88 166.5, 191.88 166.5, 202.5 139.5, 202.5 139.5, 191.88 112.50000000000001, 191.88 112.50000000000001, 202.5 85.50000000000001, 202.5 85.50000000000001, 191.88 42.75000000000001, 191.88 42.75000000000001, 202.5 0, 202.50000000000003 0, 158.62500000000003 10.62, 158.62500000000003 10.62, 114.75000000000001 0, 114.75000000000001 0, 87.75000000000001 10.62, 87.75000000000001 10.62, 43.87500000000001 0, 43.87500000000001 "
        id="polygon4140" />
   </g>
@@ -122,78 +123,78 @@
        id="polygon4160" />
   </g>
   <rect
-     style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.0134542;stroke-opacity:1"
+     style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.09;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
      id="rect4168"
      width="255.16292"
      height="87.953522"
      x="76.522789"
      y="426.98218" />
   <rect
-     style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.98819321;stroke-opacity:1"
+     style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.09;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
      id="rect4170"
      width="20.679466"
      height="60.243473"
      x="137.90858"
      y="271.45355" />
   <circle
-     style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.02162158;stroke-opacity:1"
+     style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.09;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
      id="path4178"
      cx="293.57501"
      cy="300.53214"
      r="12.314189" />
   <rect
-     style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.03740108;stroke-opacity:1"
+     style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.09;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
      id="rect4180"
      width="44.576817"
      height="40.362598"
      x="833.20447"
      y="357.41864" />
   <rect
-     style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.0308727;stroke-opacity:1"
+     style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.09;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
      id="rect4182"
      width="93.599998"
      height="11.477145"
      x="838.14288"
      y="336.28571" />
   <rect
-     style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.05614829;stroke-opacity:1"
+     style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.09;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
      id="rect4184"
      width="34.061253"
      height="39.921852"
      x="944.55859"
      y="357.16208" />
   <circle
-     style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.90658534;stroke-opacity:1"
+     style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.09;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
      id="path4188"
      cx="70.417145"
      cy="414.52997"
      r="4.8567076" />
   <circle
-     style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.89999998;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.09;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
      id="path4190"
      cx="109.62"
      cy="319.81"
      r="5.5140843" />
   <circle
-     style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.89999998;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.09;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
      id="path4190-3"
      cx="109.64408"
      cy="285.39285"
      r="5.5140843" />
   <circle
-     style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.90658534;stroke-opacity:1"
+     style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.09;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
      id="path4188-8"
      cx="70.440002"
      cy="524.82483"
      r="4.8567076" />
   <circle
-     style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.90658534;stroke-opacity:1"
+     style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.09;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
      id="path4188-8-1"
      cx="339.74811"
      cy="524.78998"
      r="4.8567076" />
   <circle
-     style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.90658534;stroke-opacity:1"
+     style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.09;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
      id="path4188-8-4"
      cx="339.75"
      cy="414.54001"
