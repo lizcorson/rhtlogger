@@ -11,7 +11,7 @@ long lastFileWrite = 0;
 long lastDisplayWrite = 0;
 int powerStatus = 1;
 long lastDebounceTime = 0;
-long debounceDelay = 200;
+long debounceDelay = 300;
 
 // set the LCD address to 0x27 or 0x3F for a 16 chars 2 line display
 // Set the pins on the I2C chip used for LCD connections:
