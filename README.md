@@ -17,7 +17,7 @@ I soldered everything on to the proto shield, but I couldn't get the system to w
 - 10k Ω resistor
 
 Removed:
-- SainSmart Arduino Uno http://smile.amazon.com/dp/B00E5WJSHK
+- SainSmart Uno http://smile.amazon.com/dp/B00E5WJSHK
 - Arrela Data Logger Shield http://smile.amazon.com/dp/B00KHYHKT8 (I see this is no longer available - http://smile.amazon.com/dp/B00M1M8N90/ is probably a comparable replacement)
 - tiny breadboard and/or protoshield with tiny breadboard http://www.ebay.com/itm/221739124245
 - DHT22 sensor https://www.sparkfun.com/products/10167
@@ -32,7 +32,7 @@ Removed:
 
 ![alt tag](https://github.com/lizcorson/rhtlogger/blob/master/sampledata/2015-12-29.PNG)
 
-## Photo
+## Photos
 
 New breadboard prototype with the Pro Mini.
 
